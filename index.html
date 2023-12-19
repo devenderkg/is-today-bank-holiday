@@ -1,0 +1,454 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quickly find out if today is a bank holiday with our easy-to-use web app. Check today's bank holiday status at a glance.">
+    <meta name="keywords" content="bank open today, is it a bank holiday today, Is Today Bank Holiday">
+    <meta name="author" content="Your Name">
+
+    <!-- Open Graph meta tags for better social sharing -->
+    <meta property="og:title" content="Is Today Bank Holiday?">
+    <meta property="og:description" content="Quickly find out if today is a bank holiday with our easy-to-use web app. Check today's bank holiday status at a glance.">
+    <meta property="og:image" content="/images/logo.webp">
+    <meta property="og:url" content="https://www.yourwebsite.com">
+
+    <!-- Twitter Card meta tags for Twitter sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Is Today Bank Holiday?">
+    <meta name="twitter:description" content="Quickly find out if today is a bank holiday with our easy-to-use web app. Check today's bank holiday status at a glance.">
+    <meta name="twitter:image" content="/images/logo.webp">
+
+    <!-- Favicon link -->
+    <link rel="icon" href="/images/logo.webp" type="image/x-icon">
+
+    <!-- Title of the page -->
+    <title>Is Today Bank Holiday? - Bank Open Today</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap" rel="stylesheet">
+
+    <title>Is Today Bank Holiday?</title>
+    <style>
+        #result {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* Create three equal columns */
+        td {
+            width: 33.33%;
+        }
+    </style>
+</head>
+
+<body class="vsc-initialized">
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a class="logo" href="index.html"><img src="images/logo.webp"></a>
+                <div class="toggle-btn">☰</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#Saturday">Second Saturday</a></li>
+                    <li><a href="#Saturday">Fourth Saturday</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="con0">
+        <div class="con1" id="about">
+            <h1 style="text-align: center;">Is Today Bank Holiday?</h1>
+            <div id="result">Loading...</div>
+            <img alt="Is Today Bank Holiday" src="images/Is Today Bank Holiday.jpg">
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+    try {
+        // Fetch current date
+        var currentDate = new Date();
+        var formattedDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' }).format(currentDate);
+
+        console.log('Current Date:', formattedDate);
+
+        // Parse CSV using PapaParse
+        Papa.parse("data.csv", {
+            download: true,
+            header: true,
+            dynamicTyping: true,  // Attempt to auto-detect data types
+            complete: function (result) {
+                // Display result in HTML
+                var resultDiv = document.getElementById("result");
+
+                console.log('Parsed CSV Data:', result.data);
+
+                // Check if the current date is present in 'Date & Month'
+                var index = result.data.findIndex(row => row['Date & Month'] === formattedDate);
+
+                if (index !== -1) {
+                    // Date found in CSV
+                    var rowData = result.data[index];
+                    var day = rowData['Day'];
+                    var holiday = rowData['Holiday'];
+
+                    console.log('YES! Today is', formattedDate, 'and it\'s', holiday);
+                    console.log('Day:', day);
+
+                    resultDiv.innerHTML = `
+                        <p>YES! Today is ${formattedDate}, and it's ${holiday} (${day}).</p>
+                    `;
+                } else {
+                    // Date not found in CSV
+                    console.log('NO! Today is', formattedDate, 'and it\'s not in the CSV file');
+                    resultDiv.textContent = "NO!";
+                }
+            }
+        });
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+});
+
+
+
+console.log('Current Date:', formattedDate);
+console.log('Dates in Column A:', datesInColumnA);
+console.log('Index of Today\'s Date:', index);
+
+
+            </script>
+
+            <h2>Bank Holidays In India 2024</h2>
+            <p>In India, banks typically remain closed on public holidays, which can be either specific to a particular
+                state or observed nationwide. All-India holidays comprise significant events such as Republic Day
+                (January 26), Independence Day (August 15), and Gandhi Jayanti (October 2). Additionally, various
+                festivals like Diwali, Christmas, Eid, Guru Nanak Jayanti, Good Friday, and others are recognized as
+                bank holidays. Moreover, the second and fourth Saturdays of each month are designated as holidays for
+                banks.</p>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Date &amp; Month</th>
+                        <th>Day</th>
+                        <th>Holiday</th>
+                    </tr>
+                    <tr>
+                        <td>January 1</td>
+                        <td>Monday</td>
+                        <td>New Year's Day</td>
+                    </tr>
+                    <tr>
+                        <td>January 15</td>
+                        <td>Monday</td>
+                        <td>Pongal</td>
+                    </tr>
+                    <tr>
+                        <td>January 17</td>
+                        <td>Wednesday</td>
+                        <td>Guru Gobind Singh Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>January 23</td>
+                        <td>Tuesday</td>
+                        <td>Netaji Subhas Chandra Bose Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>January 26</td>
+                        <td>Friday</td>
+                        <td>Republic Day</td>
+                    </tr>
+                    <tr>
+                        <td>March 8</td>
+                        <td>Friday</td>
+                        <td>Maha Shivaratri</td>
+                    </tr>
+                    <tr>
+                        <td>March 25</td>
+                        <td>Monday</td>
+                        <td>Holi</td>
+                    </tr>
+                    <tr>
+                        <td>March 29</td>
+                        <td>Friday</td>
+                        <td>Good Friday</td>
+                    </tr>
+                    <tr>
+                        <td>April 9</td>
+                        <td>Tuesday</td>
+                        <td>Ugadi</td>
+                    </tr>
+                    <tr>
+                        <td>April 10</td>
+                        <td>Wednesday</td>
+                        <td>Idul Fitr</td>
+                    </tr>
+                    <tr>
+                        <td>April 14</td>
+                        <td>Sunday</td>
+                        <td>Dr Ambedkar Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>April 17</td>
+                        <td>Wednesday</td>
+                        <td>Ram Navami</td>
+                    </tr>
+                    <tr>
+                        <td>April 21</td>
+                        <td>Sunday</td>
+                        <td>Mahavir Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>May 1</td>
+                        <td>Wednesday</td>
+                        <td>May Day</td>
+                    </tr>
+                    <tr>
+                        <td>May 10</td>
+                        <td>Friday</td>
+                        <td>Maharshi Parasuram Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>May 23</td>
+                        <td>Thursday</td>
+                        <td>Buddha Purnima</td>
+                    </tr>
+                    <tr>
+                        <td>June 17</td>
+                        <td>Monday</td>
+                        <td>Bakrid / Eid al Adha</td>
+                    </tr>
+                    <tr>
+                        <td>July 17</td>
+                        <td>Wednesday</td>
+                        <td>Muharram</td>
+                    </tr>
+                    <tr>
+                        <td>August 15</td>
+                        <td>Thursday</td>
+                        <td>Independence Day</td>
+                    </tr>
+                    <tr>
+                        <td>August 19</td>
+                        <td>Monday</td>
+                        <td>Raksha Bandhan</td>
+                    </tr>
+                    <tr>
+                        <td>August 26</td>
+                        <td>Monday</td>
+                        <td>Janmashtami</td>
+                    </tr>
+                    <tr>
+                        <td>September 7</td>
+                        <td>Saturday</td>
+                        <td>Ganesh Chaturthi</td>
+                    </tr>
+                    <tr>
+                        <td>September 16</td>
+                        <td>Monday</td>
+                        <td>Eid e Milad</td>
+                    </tr>
+                    <tr>
+                        <td>October 2</td>
+                        <td>Wednesday</td>
+                        <td>Gandhi Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>October 10</td>
+                        <td>Thursday</td>
+                        <td>Maha Saptami</td>
+                    </tr>
+                    <tr>
+                        <td>October 11</td>
+                        <td>Friday</td>
+                        <td>Maha Ashtami</td>
+                    </tr>
+                    <tr>
+                        <td>October 13</td>
+                        <td>Sunday</td>
+                        <td>Vijaya Dashami</td>
+                    </tr>
+                    <tr>
+                        <td>October 17</td>
+                        <td>Thursday</td>
+                        <td>Maharishi Valmiki Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>October 31</td>
+                        <td>Thursday</td>
+                        <td>Deepavali</td>
+                    </tr>
+                    <tr>
+                        <td>November 1</td>
+                        <td>Friday</td>
+                        <td>Diwali</td>
+                    </tr>
+                    <tr>
+                        <td>November 2</td>
+                        <td>Saturday</td>
+                        <td>Deepavali Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>November 3</td>
+                        <td>Sunday</td>
+                        <td>Bhai Dooj</td>
+                    </tr>
+                    <tr>
+                        <td>November 15</td>
+                        <td>Friday</td>
+                        <td>Guru Nanak Jayanti</td>
+                    </tr>
+                    <tr>
+                        <td>December 25</td>
+                        <td>Wednesday</td>
+                        <td>Christmas Day</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <h2 id="Saturday">Bank Holidays In 2024 On The Second And Fourth Saturdays</h2>
+            <p>
+                Bank holidays in India are determined by the Reserve Bank of India. This policy applies to various types
+                of banks, such as private sector banks, public sector banks, cooperative banks, regional banks, and
+                rural banks. All these banks, whether scheduled or non-scheduled, observe holidays on the second and
+                fourth Saturday of each month.
+            </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Date &amp; Month</th>
+                        <th>Holiday</th>
+                    </tr>
+                    <tr>
+                        <td>January 13</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>January 27</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>February 10</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>February 24</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>March 9</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>March 23</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>April 13</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>April 27</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>May 11</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>May 25</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>June 8</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>June 22</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>July 13</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>July 27</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>August 10</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>August 24</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>September 14</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>September 28</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>October 12</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>October 26</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>November 9</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>November 23</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>December 14</td>
+                        <td>Second Saturday Bank Holiday</td>
+                    </tr>
+                    <tr>
+                        <td>December 28</td>
+                        <td>Fourth Saturday Bank Holiday</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+        </div>
+
+
+
+        <div class="con1" id="footer">
+            <p id="copy">© Is Today Bank Holiday? | 2023 - 2024</p>
+            <a href="privacy.html">
+                <p>Privacy Policy</p>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/c7184454f2.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
